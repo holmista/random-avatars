@@ -51,4 +51,8 @@ const saveResizedImages = async (
   }
 };
 
-saveResizedImages("/jojo/raw", "/jojo/resized", "jojo");
+saveResizedImages(
+  "/attack-on-titan/raw",
+  "/attack-on-titan/resized",
+  "attack-on-titan"
+);
