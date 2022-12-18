@@ -31,7 +31,6 @@ const resizeImage = (
 const saveResizedImages = async (
   rawFolderPath: string,
   resizedFolderPath: string,
-  size: Size,
   resource: string
 ) => {
   const images = await fs.readdir(path.join(publicPath, rawFolderPath));
@@ -52,9 +51,4 @@ const saveResizedImages = async (
   }
 };
 
-saveResizedImages(
-  "/attack-on-titan/raw",
-  "/attack-on-titan/resized",
-  Size.small,
-  "attack-on-titan"
-);
+saveResizedImages("/jojo/raw", "/jojo/resized", "jojo");
