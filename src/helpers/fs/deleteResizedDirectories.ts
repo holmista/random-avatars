@@ -32,4 +32,5 @@ const deleteResizedDirectories = async (resource: string) => {
   }
 };
 
-deleteResizedDirectories("attack-on-titan");
+const resource = process.argv.slice(2)[0];
+deleteResizedDirectories(resource);

@@ -7,12 +7,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const publicPath = path.join(__dirname, "../../public");
 
-enum Size {
-  small = "small",
-  medium = "medium",
-  large = "large",
-}
-
 const sizes = { small: 60, medium: 100, large: 120 };
 
 const resizeImage = (
@@ -47,12 +41,8 @@ const saveResizedImages = async (
         sizes[j]
       );
     }
-    // console.log(sizes[j]);
   }
 };
 
-saveResizedImages(
-  "/attack-on-titan/raw",
-  "/attack-on-titan/resized",
-  "attack-on-titan"
-);
+const resource = process.argv.slice(2)[0];
+saveResizedImages(`/${resource}/raw`, `/${resource}/resized`, resource);

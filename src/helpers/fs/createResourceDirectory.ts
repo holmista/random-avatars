@@ -5,7 +5,7 @@ import directoryExists from "./directoryExists.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const publicPath = path.join(__dirname, "../../public");
+const publicPath = path.join(__dirname, "../../../public");
 
 const createResourceDirectory = async (resource: string) => {
   try {
@@ -24,4 +24,5 @@ const createResourceDirectory = async (resource: string) => {
   }
 };
 
-createResourceDirectory("attack on titan");
+const resource = process.argv.slice(2)[0];
+createResourceDirectory(resource);
