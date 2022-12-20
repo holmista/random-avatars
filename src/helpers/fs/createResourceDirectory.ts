@@ -24,5 +24,4 @@ const createResourceDirectory = async (resource: string) => {
   }
 };
 
-const resource = process.argv.slice(2)[0];
-createResourceDirectory(resource);
+export default createResourceDirectory;
