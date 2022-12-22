@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import createResourceDirectory from "../helpers/fs/createResourceDirectory.js";
+import resizeImages from "../helpers/resizeImages.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,7 +38,7 @@ export const getRandomImage = async (req: Request, res: Response) => {
   }
 };
 
-export const createImages = async (req: Request, res: Response) => {
+export const createRawImages = async (req: Request, res: Response) => {
   try {
     const resource = req.body.resource;
     await createResourceDirectory(resource);
@@ -50,5 +51,14 @@ export const createImages = async (req: Request, res: Response) => {
     res.status(200).json({ message: "resource created" });
   } catch (err) {
     res.status(500).json({ error: "resource could not be created" });
+  }
+};
+
+export const createResizedImages = async (req: Request, res: Response) => {
+  try {
+    const resource = req.body.resource;
+    resizeImages(`/${resource}/raw`, `/${resource}/resized`, resource);
+  } catch (err) {
+    console.log(err);
   }
 };

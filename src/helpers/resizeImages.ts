@@ -22,7 +22,7 @@ const resizeImage = (
     });
 };
 
-const saveResizedImages = async (
+const resizeImages = async (
   rawFolderPath: string,
   resizedFolderPath: string,
   resource: string
@@ -44,5 +44,7 @@ const saveResizedImages = async (
   }
 };
 
-const resource = process.argv.slice(2)[0];
-saveResizedImages(`/${resource}/raw`, `/${resource}/resized`, resource);
+export default resizeImages;
+
+// const resource = process.argv.slice(2)[0];
+// saveResizedImages(`/${resource}/raw`, `/${resource}/resized`, resource);

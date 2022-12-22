@@ -5,7 +5,8 @@ const upload = multer();
 import {
   getRandomImageUrl,
   getRandomImage,
-  createImages,
+  createRawImages,
+  createResizedImages,
 } from "../controllers/imageController.js";
 import createImagesMiddleware from "../middlewares/createImagesMiddleware.js";
 
@@ -13,6 +14,13 @@ import createImagesMiddleware from "../middlewares/createImagesMiddleware.js";
 router.get("/random/:size", getRandomImage);
 router.get("/:folder/random/:size", getRandomImageUrl);
 
-router.post("/", upload.array("images"), createImagesMiddleware, createImages);
+router.post(
+  "/",
+  upload.array("images"),
+  createImagesMiddleware,
+  createRawImages
+);
+
+router.post("/resize", createResizedImages);
 
 export default router;
