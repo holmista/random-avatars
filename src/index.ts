@@ -2,6 +2,7 @@ import express from "express";
 import imageRouter from "./routes/imageRoutes.js";
 import resourceRouter from "./routes/resourceRoutes.js";
 import authRouter from "./routes/authRoutes.js";
+import cookieParser from "cookie-parser";
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/auth", authRouter);
 app.use("/images", imageRouter);
