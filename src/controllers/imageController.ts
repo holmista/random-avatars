@@ -41,10 +41,13 @@ export const getRandomImage = async (req: Request, res: Response) => {
 export const createRawImages = async (req: Request, res: Response) => {
   try {
     const resource = req.body.resource;
-    await createResourceDirectory(resource);
+    // await createResourceDirectory(resource);
+    await fs.mkdir(`public/unapproved/${resource}`);
     for (let i = 0; i < req.files.length; i++) {
       await fs.writeFile(
-        `public/${resource}/raw/${Date.now() + req.files[i].originalname}`,
+        `public/unapproved/${resource}/${
+          i + req.files[i].originalname.replaceAll(" ", "")
+        }`,
         req.files[i].buffer
       );
     }

@@ -30,7 +30,7 @@ app.use(cookieParser());
 
 app.use("/auth", authRouter);
 app.use("/images", imageRouter);
-app.use("/info", resourceRouter);
+app.use("/resource", resourceRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ error: "not found" });
