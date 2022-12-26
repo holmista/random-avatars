@@ -21,6 +21,6 @@ router.post(
   createRawImages
 );
 
-router.post("/resize", createResizedImages);
+// router.post("/resize", createResizedImages);
 
 export default router;

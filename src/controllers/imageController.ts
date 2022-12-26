@@ -41,7 +41,6 @@ export const getRandomImage = async (req: Request, res: Response) => {
 export const createRawImages = async (req: Request, res: Response) => {
   try {
     const resource = req.body.resource;
-    // await createResourceDirectory(resource);
     await fs.mkdir(`public/unapproved/${resource}`);
     for (let i = 0; i < req.files.length; i++) {
       await fs.writeFile(
