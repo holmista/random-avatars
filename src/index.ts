@@ -13,13 +13,13 @@ app.use((req, res, next) => {
   if (req.method === "OPTIONS") {
     res
       .status(204)
-      .header("Access-Control-Allow-Origin", "http://localhost:5173");
+      .header("Access-Control-Allow-Origin", process.env.FRONT_BASE_URL);
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Headers", "Content-Type");
     res.end();
     return;
   }
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.header("Access-Control-Allow-Origin", process.env.FRONT_BASE_URL);
   res.header("Access-Control-Allow-Headers", "*");
   res.header("Access-Control-Allow-Credentials", "true");
   next();
@@ -38,7 +38,9 @@ app.use("*", (req, res) => {
   res.status(404).json({ error: "not found" });
 });
 
-app.listen(process.env.PORT, () => console.log("listening to port 3000"));
+app.listen(process.env.PORT, () =>
+  console.log("listening to port " + process.env.PORT)
+);
 
 ["uncaughtException", "unhandledRejection"].forEach((event) => {
   process.on(event, (error) => {
