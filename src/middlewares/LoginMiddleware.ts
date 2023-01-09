@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 import ValidateRequest from "./ValidateRequest.js";
-import jwt from "jsonwebtoken";
 
 class LoginMiddleware extends ValidateRequest {
   public req: Request;
@@ -10,18 +9,11 @@ class LoginMiddleware extends ValidateRequest {
     super(req, res, next);
     super.progress();
   }
-  public validate() {
-    const token = this.req.cookies.access_token;
-    if (token) {
-      try {
-        jwt.verify(token, process.env.JWT_SECRET);
-        return true;
-      } catch (err) {
-        return "Unauthorized";
-      }
-    } else {
-      return "Unauthorized";
+  public validate(): boolean | string {
+    if (!this.req.body.username || !this.req.body.password) {
+      return "username or password is missing";
     }
+    return true;
   }
 }
 

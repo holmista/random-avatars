@@ -5,7 +5,7 @@ import authRouter from "./routes/authRoutes.js";
 import cookieParser from "cookie-parser";
 import * as dotenv from "dotenv";
 dotenv.config();
-import { authMiddleware } from "./middlewares/authMiddleware.js";
+import Authmiddleware from "./middlewares/authMiddleware.js";
 
 const app = express();
 
@@ -25,7 +25,9 @@ app.use((req, res, next) => {
   next();
 });
 app.use(cookieParser());
-app.use("/unapproved", authMiddleware);
+app.use("/unapproved", (req, res, next) => {
+  new Authmiddleware(req, res, next);
+});
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
