@@ -1,10 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-interface IValidateRequest {
-  validate: () => boolean | string;
-}
-
-class ValidateRequest implements IValidateRequest {
+class ValidateRequest {
   public req: Request;
   public res: Response;
   public next: NextFunction;
@@ -13,10 +9,10 @@ class ValidateRequest implements IValidateRequest {
     this.res = res;
     this.next = next;
   }
-  public validate() {
+  public validate(): boolean | string {
     return true;
   }
-  protected evaluate() {
+  protected progress() {
     const valid = this.validate();
     if (valid === true) {
       this.next();
